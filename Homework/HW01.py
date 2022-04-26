@@ -40,3 +40,90 @@ def two_of_three(x, y, z):
     return min(a*a + b*b, b*b + c*c, c*c+a*a)
 
 
+def largest_factor(n):
+    """Return the largest factor of n that is smaller than n.
+
+    >>> largest_factor(15) # factors are 1, 3, 5
+    5
+    >>> largest_factor(80) # factors are 1, 2, 4, 5, 8, 10, 16, 20, 40
+    40
+    >>> largest_factor(13) # factor is 1 since 13 is prime
+    1
+    """
+    "*** YOUR CODE HERE ***"
+    """
+    #first try, not very efficient
+    f = 1
+    fList = []
+    while f != n:
+        if n % f == 0:
+            fList.append(f)
+        f += 1
+    return max(fList)
+    
+    """
+    #second try, start from middle, more efficient
+    k = n // 2
+    while k >=1:
+        if n % k == 0:
+            return k
+        else:
+            k = k-1
+    return 1
+
+
+def if_function(condition, true_result, false_result):
+    """Return true_result if condition is a true value, and
+    false_result otherwise.
+
+    >>> if_function(True, 2, 3)
+    2
+    >>> if_function(False, 2, 3)
+    3
+    >>> if_function(3==2, 'equal', 'not equal')
+    'not equal'
+    >>> if_function(3>2, 'bigger', 'smaller')
+    'bigger'
+    """
+    if condition:
+        return true_result
+    else:
+        return false_result
+
+
+def with_if_statement():
+    """
+    >>> result = with_if_statement()
+    61A
+    >>> print(result)
+    None
+    """
+    if cond():
+        return true_func()
+    else:
+        return false_func()
+
+
+def with_if_function():
+    """
+    >>> result = with_if_function()
+    Welcome to
+    61A
+    >>> print(result)
+    None
+    """
+    return if_function(cond(), true_func(), false_func())
+
+
+def cond():
+    "*** YOUR CODE HERE ***"
+    return False
+
+
+def true_func():
+    "*** YOUR CODE HERE ***"
+    print("Welcome to")
+
+def false_func():
+    "*** YOUR CODE HERE ***"
+    print("61A")
