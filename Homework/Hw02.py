@@ -67,4 +67,35 @@ def accumulate(combiner, base, n, term):
         result = combiner(result,term(i))
     return result
 
-  
+def summation_using_accumulate(n, term):
+    """Returns the sum of term(1) + ... + term(n). The implementation
+    uses accumulate.
+
+    >>> summation_using_accumulate(5, square)
+    55
+    >>> summation_using_accumulate(5, triple)
+    45
+    >>> from construct_check import check
+    >>> # ban iteration and recursion
+    >>> check(HW_SOURCE_FILE, 'summation_using_accumulate',
+    ...       ['Recursion', 'For', 'While'])
+    True
+    """
+    "*** YOUR CODE HERE ***"
+    return accumulate(add,0,n,term)
+
+def product_using_accumulate(n, term):
+    """An implementation of product using accumulate.
+
+    >>> product_using_accumulate(4, square)
+    576
+    >>> product_using_accumulate(6, triple)
+    524880
+    >>> from construct_check import check
+    >>> # ban iteration and recursion
+    >>> check(HW_SOURCE_FILE, 'product_using_accumulate',
+    ...       ['Recursion', 'For', 'While'])
+    True
+    """
+    "*** YOUR CODE HERE ***"
+    return accumulate(mul,1,n,term)
