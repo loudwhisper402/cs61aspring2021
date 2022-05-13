@@ -44,7 +44,7 @@ def piggy_points(score):
     """
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
-    
+    return 3 + int(min((str(score**2))))
 
     # END PROBLEM 2
 
@@ -66,6 +66,10 @@ def take_turn(num_rolls, opponent_score, dice=six_sided, goal=GOAL_SCORE):
     assert opponent_score < goal, 'The game should be over.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        return piggy_points(opponent_score)
+    else:
+        roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
