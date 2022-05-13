@@ -69,7 +69,7 @@ def take_turn(num_rolls, opponent_score, dice=six_sided, goal=GOAL_SCORE):
     if num_rolls == 0:
         return piggy_points(opponent_score)
     else:
-        roll_dice(num_rolls, dice)
+        return roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
