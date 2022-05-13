@@ -27,8 +27,8 @@ def roll_dice(num_rolls, dice=six_sided):
     outcome = 0
     for i in range(1,num_rolls):
         dice_val = dice()
-        if dice_val = 1:
-            outcome =1
+        if dice_val == 1:
+            outcome = 1
         else:
             outcome += dice_val
     return outcome
