@@ -143,6 +143,7 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
             score0 += take_turn(strategy0,score1,dice,goal)
             if more_boar(score0,score1) == False:
                 who = next_player(who)
+
         else: 
             score1 += take_turn(strategy1,score0,dice,goal)
             if more_boar(score1, score0):
@@ -237,6 +238,16 @@ def announce_highest(who, last_score=0, running_high=0):
     assert who == 0 or who == 1, 'The who argument should indicate a player.'
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+    def say(score0,score1):
+        score = score0 if who == 0 else score1
+        running = running_high
+        if score > last_score:
+            running = score - last_score
+            if running > running_high:  
+                print('Player'+ who + 'has reached a new maximum point gain. ' + running + ' points!')
+        return announce_highest(who, score, running)
+    return say
+
     # END PROBLEM 7
 
 
@@ -277,6 +288,13 @@ def make_averaged(original_function, trials_count=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def func(*args):
+        result = 0
+        for i in range(trials_count):
+            result += original_function(*args)
+        return result / trials_count
+    return func
+
     # END PROBLEM 8
 
 
@@ -291,6 +309,17 @@ def max_scoring_num_rolls(dice=six_sided, trials_count=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    
+    test_value = 0
+    test_set = []
+
+    for i in range(1,11):
+        test_value = make_averaged(roll_dice,trials_count=10)(i,dice)
+        test_set.append(test_value)
+    max_value = max(test_set)
+    return test_set.index(max_value)+1 #because index start with 0 
+    
+
     # END PROBLEM 9
 
 
@@ -331,7 +360,8 @@ def piggypoints_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 6  # Replace this statement
+
+    return 0 if piggy_points(opponent_score) >= cutoff else num_rolls  # Replace this statement
     # END PROBLEM 10
 
 
@@ -341,7 +371,8 @@ def more_boar_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     Otherwise, it rolls NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 6  # Replace this statement
+    return 0 if more_boar(score+piggy_points(opponent_score),opponent_score)  \
+        else piggypoints_strategy(score,opponent_score,cutoff,num_rolls)  # Replace this statement
     # END PROBLEM 11
 
 
